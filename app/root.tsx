@@ -1,5 +1,6 @@
 import { cssBundleHref } from "@remix-run/css-bundle";
 import styles from "./tailwind.css"
+import clsx from "clsx";
 
 
 import type { LinksFunction } from "@remix-run/node";
@@ -11,15 +12,17 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { ThemeProvider, useTheme } from "./lib/theme/theme-provider";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
 ]
 
-export default function App() {
+function App() {
+  const [theme] = useTheme();
   return (
-    <html lang="en">
+    <html lang="en" className={clsx(theme, "h-full")}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,3 +38,12 @@ export default function App() {
     </html>
   );
 }
+
+export default function AppWithProviders() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  )
+}
+
