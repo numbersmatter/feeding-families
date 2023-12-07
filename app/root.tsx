@@ -29,7 +29,7 @@ function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="h-screen w-screen">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

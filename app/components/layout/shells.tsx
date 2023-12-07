@@ -103,7 +103,7 @@ export function StandardShell({
         <div className="flex-1 flex flex-row overflow-hidden " >
           {children}
         </div>
-        <div className="h-12"></div>
+        <div className="h-12 border-t-4 border-muted-foreground"></div>
       </div>
     </div>
   )

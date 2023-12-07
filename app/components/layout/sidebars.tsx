@@ -10,6 +10,7 @@ import {
   HomeIcon,
   BackpackIcon,
   CookieIcon,
+  ClipboardIcon,
 } from "@radix-ui/react-icons";
 
 
@@ -24,8 +25,15 @@ export const navigation = [
   {
     id: "history",
     name: "Request History",
-    to: `/request-history`,
+    to: `/food-requests`,
     icon: <BackpackIcon className=" h-6 w-6 text-secondary-foreground hover:bg-secondary/80 " aria-hidden="true" />,
+    end: false,
+  },
+  {
+    id: "verify",
+    name: "Verification",
+    to: `/verify`,
+    icon: <ClipboardIcon className=" h-6 w-6 text-secondary-foreground hover:bg-secondary/80 " aria-hidden="true" />,
     end: false,
   },
 ];

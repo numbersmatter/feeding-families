@@ -1,6 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { CheckCircle, XCircleIcon } from "lucide-react";
 import { Button } from "../ui/button";
+import { Link } from "@remix-run/react";
 
 type FoodRequestRow = {
   id: string;
@@ -81,7 +82,15 @@ export const foodRequestColumnsShort: ColumnDef<FoodRequestRow>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      return <Button>View</Button>;
+      return (
+        <Link
+          to={`/food-requests/${row.original.id}`}
+          className="flex justify-center"
+
+        >
+          View Details
+        </Link>
+      )
     },
   },
 ];
@@ -129,7 +138,13 @@ export const foodRequestColumnsLong: ColumnDef<FoodRequestRow>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      return <Button>View</Button>;
+      return <Link
+        to={`/food-requests/${row.original.id}`}
+        className="flex justify-center"
+      >
+        View Details
+      </Link>
+        ;
     },
   },
 ];
