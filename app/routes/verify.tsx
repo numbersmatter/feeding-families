@@ -2,15 +2,12 @@
 // users are redirected here if not verified for current program
 // If user is verified, they are redirected to request history page
 
+// Import dependencies
+import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { TitleHeader } from "~/components/layout/page-headers";
 import { StandardShell } from "~/components/layout/shells";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { RequestVerificationForm } from "~/components/verification/request-verification-form";
-
-// Import dependencies
-
-
-
 
 // Import components
 
@@ -18,13 +15,19 @@ import { RequestVerificationForm } from "~/components/verification/request-verif
 
 
 // loader function
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  return null;
+};
 
 
 
 // action function
+export const action = async ({ request }: ActionFunctionArgs) => {
+  return null;
+};
 
 
-// presentation layer
+// Display to user
 
 export default function VerifyUserPage() {
   return (
