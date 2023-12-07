@@ -23,14 +23,14 @@ export const foodRequestTestData: FoodRequestRow[] = [
     id: "2",
     name: "Oct 2023 Food Drive-thru",
     received: "yes",
-    description: "This is a description of product 2",
+    description: "Drive-thru food drive for the month of October 2023",
     date: new Date(2023, 10, 1)
   },
   {
     id: "3",
     name: "Sept 2023 Food Drive-thru",
     received: "no",
-    description: "This is a description of product 3",
+    description: "Drive-thru food drive for the month of September 2023",
     date: new Date(2023, 9, 1)
   },
 ];
@@ -97,7 +97,9 @@ export const foodRequestColumnsShort: ColumnDef<FoodRequestRow>[] = [
 
 export const foodRequestColumnsLong: ColumnDef<FoodRequestRow>[] = [
   {
-    header: "Name",
+    header: () => <div className="text-left text-primary-foreground">
+      Drive Thru
+    </div>,
     accessorKey: "name",
     cell: ({ row }) => {
       return (
@@ -110,7 +112,9 @@ export const foodRequestColumnsLong: ColumnDef<FoodRequestRow>[] = [
     },
   },
   {
-    header: () => <div className="text-center">Description</div>,
+    header: () => <div className="text-center text-primary-foreground">
+      Description
+    </div>,
     accessorKey: "description",
     cell: ({ row }) => {
       return (
@@ -121,7 +125,7 @@ export const foodRequestColumnsLong: ColumnDef<FoodRequestRow>[] = [
     },
   },
   {
-    header: () => <div className="text-center">Availability</div>,
+    header: () => <div className="text-center text-primary-foreground">Received Box</div>,
     accessorKey: "availability",
     cell: ({ row }) => {
       return (
