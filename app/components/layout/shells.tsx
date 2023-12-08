@@ -77,7 +77,7 @@ export function StandardShell({
         </Dialog>
       </Transition.Root>
       <DesktopSideBar />
-      <div className="h-full flex flex-col  lg:pl-64">
+      <div className="h-full flex flex-col lg:pl-64">
         <div className="sticky top-0 z-40 flex items-center gap-x-6  px-4 py-4 shadow-sm sm:px-6 lg:hidden">
           <button
             type="button"
@@ -103,7 +103,7 @@ export function StandardShell({
         <div className="flex-1 flex flex-row overflow-hidden " >
           {children}
         </div>
-        <div className="h-12 border-t-4 border-muted-foreground"></div>
+        <div className="h-12 border-t-4 border-muted-foreground bg-muted"></div>
       </div>
     </div>
   )

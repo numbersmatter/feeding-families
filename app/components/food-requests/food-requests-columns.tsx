@@ -36,7 +36,7 @@ export const foodRequestTestData: FoodRequestRow[] = [
 ];
 
 function AvailabilityTrue() {
-  return <CheckCircle className={`bg-green-700 rounded-full w-7 h-7`} />;
+  return <CheckCircle className={`bg-primary-foreground text-primary rounded-full w-7 h-7`} />;
 }
 
 function AvailabilityFalse() {
@@ -103,8 +103,8 @@ export const foodRequestColumnsLong: ColumnDef<FoodRequestRow>[] = [
     accessorKey: "name",
     cell: ({ row }) => {
       return (
-        <div className="flex flex-col justify-start gap-2">
-          <p className="text-primary-foreground text-base font-semibold">
+        <div className="flex flex-col justify-start gap-2 ">
+          <p className="text-secondary-foreground  text-base font-semibold">
             {row.original.name}
           </p>
         </div>

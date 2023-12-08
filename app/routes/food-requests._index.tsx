@@ -32,7 +32,7 @@ export default function FoodRequestIndexRoute() {
         </div>
       </div>
       <div className="hidden px-0 sm:block lg:px-4">
-        <div className="border-0  border-accent-foreground  lg:border-2 lg:rounded-md lg:p-4 ">
+        <div className="border-0  border-muted-foreground bg-muted lg:border-2 lg:rounded-md lg:p-4 ">
           <StandardDataTable
             columns={foodRequestColumnsLong}
             data={foodRequestTestData}

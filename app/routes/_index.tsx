@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <StandardShell>
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto bg-secondary">
         <TitleHeader title="Welcome to the Feeding Families App" >
           <Card>
             <CardHeader>

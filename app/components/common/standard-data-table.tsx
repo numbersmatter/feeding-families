@@ -43,8 +43,8 @@ export function StandardDataTable<TData, TValue>({
 
   return (
 
-    <Table>
-      <TableHeader className="">
+    <Table className="bg-muted">
+      <TableHeader className="bg-primary rounded-md">
         {table.getHeaderGroups().map((headerGroup) => (
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map((header) => {
@@ -62,7 +62,7 @@ export function StandardDataTable<TData, TValue>({
           </TableRow>
         ))}
       </TableHeader>
-      <TableBody>
+      <TableBody className="">
         {table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map((row) => (
             <TableRow

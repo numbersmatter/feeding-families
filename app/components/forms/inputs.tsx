@@ -77,7 +77,7 @@ export function SelectInput({
     <>
       <Select name={inputId} defaultValue={defaultValue}>
         <SelectTrigger className="w-[250px]">
-          <SelectValue placeholder="" />
+          <SelectValue placeholder={label} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>

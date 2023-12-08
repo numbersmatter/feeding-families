@@ -32,7 +32,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 export default function VerifyUserPage() {
   return (
     <StandardShell>
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto bg-secondary">
         <TitleHeader title="Verify User" >
           <Card>
             <CardHeader>
@@ -46,8 +46,8 @@ export default function VerifyUserPage() {
             </CardContent>
           </Card>
         </TitleHeader>
-        <main>
-          <Card>
+        <main className="px-5 py-2">
+          <Card className="">
             <CardHeader>
               <CardTitle>
                 Request Verification

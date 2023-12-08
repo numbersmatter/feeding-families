@@ -59,7 +59,7 @@ export function RequestVerificationForm({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="secondary">Request Verification</Button>
+        <Button >Request Verification</Button>
       </DialogTrigger>
       <DialogContent className="rounded-none sm:rounded-md sm:max-w-[525px]">
         <fetcher.Form method="POST" ref={formRef} onSubmit={handleSaveChanges}>
@@ -117,7 +117,7 @@ export function RequestVerificationForm({
           </div>
           <DialogFooter>
             <input readOnly hidden name="_action" value={"addField"} />
-            <Button type="submit">Save changes</Button>
+            <Button type="submit">Submit Request</Button>
           </DialogFooter>
         </fetcher.Form>
       </DialogContent>
