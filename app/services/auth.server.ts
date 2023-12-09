@@ -7,6 +7,7 @@ import { discordStrategy } from "./auth_strategies/discord.strategy";
 
 export interface User {
   // Add your own user properties here or extend with a type from your database
+  uid: string;
 }
 
 export type AuthStrategy = (typeof AuthStrategies)[keyof typeof AuthStrategies];

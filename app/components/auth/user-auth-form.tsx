@@ -4,6 +4,8 @@ import { Label } from "../ui/label"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { IconSpinner } from "../icons"
+import { SocialButton } from "./social-buttons"
+import { AuthStrategies } from "~/services/auth_strategies";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
@@ -55,14 +57,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
-          <IconSpinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <IconSpinner className="mr-2 h-4 w-4" />
-        )}{" "}
-        Github
-      </Button>
+      <SocialButton
+        provider={AuthStrategies.GOOGLE} label="Login with Google"
+      />
     </div>
   )
 }
