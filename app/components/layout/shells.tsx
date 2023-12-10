@@ -3,11 +3,13 @@ import { Dialog, Transition } from "@headlessui/react";
 import {
   Cross2Icon as XMarkIcon,
   HamburgerMenuIcon as Bars3Icon,
-  LockOpen1Icon as ArrowLeftOnRectangleIcon,
+  LockOpen1Icon,
 } from "@radix-ui/react-icons";
-import { Link, } from "@remix-run/react";
+import { Form, Link, } from "@remix-run/react";
 import { DesktopSideBar, MobileSideBar } from "~/components/layout/sidebars";
+import { Button } from "../ui/button";
 
+const appName = "Feeding Families"
 
 export function StandardShell({
   children
@@ -88,17 +90,21 @@ export function StandardShell({
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
           <div className="flex-1 text-sm font-semibold leading-6 ">
-            Furbrush
+            {appName}
           </div>
-          <Link to="/logout">
-            <div className="flex items-center decoration-2 gap-x-1 py-3 text-lg underline underline-offset-4 font-semibold leading-6 ">
-              <ArrowLeftOnRectangleIcon
+          <Form
+            className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-foreground"
+            method="POST"
+            action="/logout"
+          >
+            <Button variant={"outline"} className="flex items-center decoration-2 gap-x-1 py-3 text-lg underline underline-offset-4 font-semibold leading-6 ">
+              <LockOpen1Icon
                 className="flex-shrink-0 h-6 w-6 "
                 aria-hidden="true"
               />
-              Logout
-            </div>
-          </Link>
+              signout
+            </Button>
+          </Form>
         </div>
         <div className="flex-1 flex flex-row overflow-hidden " >
           {children}

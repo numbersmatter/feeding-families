@@ -6,11 +6,12 @@ import { Form, NavLink } from "@remix-run/react";
 import { cn } from "~/lib/utils";
 
 import {
-  LockOpen1Icon as ArrowLeftOnRectangleIcon,
+  LockOpen1Icon,
   HomeIcon,
   BackpackIcon,
   CookieIcon,
   ClipboardIcon,
+  BarChartIcon,
 } from "@radix-ui/react-icons";
 
 
@@ -20,6 +21,13 @@ export const navigation = [
     name: "Home",
     to: `/`,
     icon: <HomeIcon className=" h-6 w-6  " aria-hidden="true" />,
+    end: true,
+  },
+  {
+    id: "dashboard",
+    name: "Dashboard",
+    to: `/dashboard`,
+    icon: <BarChartIcon className=" h-6 w-6  " aria-hidden="true" />,
     end: true,
   },
   {
@@ -61,7 +69,6 @@ export function DesktopSideBar(
           <div className="flex h-16 shrink-0 items-center gap-3 border-b-2">
             <CookieIcon
               className="h-8 w-auto  text-primary-foreground"
-
             />
             <span className="text-primary-foreground text-2xl font-black">
               {appName}
@@ -107,7 +114,7 @@ export function DesktopSideBar(
                     name="_action"
                     value="logout"
                   >
-                    <ArrowLeftOnRectangleIcon
+                    <LockOpen1Icon
                       className="flex-shrink-0 h-6 w-6 "
                       aria-hidden="true"
                     />
@@ -130,11 +137,12 @@ export function MobileSideBar() {
     <>
       <div className="flex grow flex-col bg-background  gap-y-5 overflow-y-auto px-6 pb-2">
         <div className="flex h-16 shrink-0 items-center">
-          <img
+          <CookieIcon
             className="h-8 w-auto"
-            src="https://firebasestorage.googleapis.com/v0/b/furry-artist.appspot.com/o/furbrush%2FFM%20logo%201.png?alt=media&token=fb824224-21ca-4337-b6b9-0fb94b4005d1"
-            alt="Furbrush"
           />
+          <span className="text-foreground text-2xl font-black">
+            {appName}
+          </span>
         </div>
         <nav className="flex flex-1 flex-col">
           <ul className="flex flex-1 flex-col gap-y-7">
@@ -154,10 +162,7 @@ export function MobileSideBar() {
                         )
                       }
                     >
-                      {
-                        // @ts-ignore
-                        navIcon2[item.id]
-                      }
+                      {item.icon}
                       {item.name}
                     </NavLink>
                   </li>

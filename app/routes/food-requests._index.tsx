@@ -39,14 +39,14 @@ export default function FoodRequestIndexRoute() {
           />
         </div>
       </div>
-      {/* <div className="px-0  sm:hidden">
+      <div className="px-0  sm:hidden">
         <div className="">
           <StandardDataTable
-            columns={productColumnsShort}
-            data={productPageData.products}
+            columns={foodRequestColumnsLong}
+            data={foodRequestTestData}
           />
         </div>
-      </div> */}
+      </div>
       <div className="h-8" />
     </main>
   );
