@@ -31,7 +31,7 @@ export function TotalMealsServedCard() {
   return (
     <StandardSmallInfoCard
       title="Total Meals Served"
-      value="735"
+      value="835"
       description="+20.1% from last year"
       icon={<UtensilsCrossed className="h-4 w-4 text-muted-foreground" />}
     />
@@ -63,7 +63,7 @@ export function DeliveryMealsServedCard() {
   return (
     <StandardSmallInfoCard
       title="Delivered Meals"
-      value="489"
+      value="346"
       description="Meals delivered to homes"
       icon={<ShoppingBag className="h-4 w-4 text-muted-foreground" />}
     />
