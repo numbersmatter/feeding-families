@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Overview } from "./overview";
 
 
@@ -7,13 +7,15 @@ import { Overview } from "./overview";
 export function OverviewCard() {
 
   return (
-    <Card>
+    <Card className="col-span-4">
       <CardHeader>
-
+        <CardTitle>Number of Meals Served</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pl-2">
         <Overview />
       </CardContent>
     </Card>
+
+
   )
 }

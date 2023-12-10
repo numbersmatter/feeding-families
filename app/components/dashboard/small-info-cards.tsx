@@ -1,4 +1,4 @@
-import { UserSquare } from "lucide-react";
+import { Contact, ShoppingBag, ShoppingBasket, UserSquare, UtensilsCrossed } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Overview } from "./overview";
 
@@ -33,7 +33,39 @@ export function TotalMealsServedCard() {
       title="Total Meals Served"
       value="735"
       description="+20.1% from last year"
-      icon={<UserSquare className="h-4 w-4 text-muted-foreground" />}
+      icon={<UtensilsCrossed className="h-4 w-4 text-muted-foreground" />}
+    />
+  )
+}
+
+export function ActiveUsersCard() {
+  return (
+    <StandardSmallInfoCard
+      title="Active Users"
+      value="61"
+      description="users signing in this month"
+      icon={<Contact className="h-4 w-4 text-muted-foreground" />}
+    />
+  )
+}
+export function PickupMealsServedCard() {
+  return (
+    <StandardSmallInfoCard
+      title="Pick Up Meals"
+      value="489"
+      description="Meals picked up by drive thru"
+      icon={<ShoppingBasket className="h-4 w-4 text-muted-foreground" />}
+    />
+  )
+}
+
+export function DeliveryMealsServedCard() {
+  return (
+    <StandardSmallInfoCard
+      title="Delivered Meals"
+      value="489"
+      description="Meals delivered to homes"
+      icon={<ShoppingBag className="h-4 w-4 text-muted-foreground" />}
     />
   )
 }
