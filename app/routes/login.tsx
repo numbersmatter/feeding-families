@@ -1,13 +1,23 @@
-import { ActionFunctionArgs, LoaderFunctionArgs, json, } from "@remix-run/node";
-import { Link } from "@remix-run/react";
+import { ActionFunctionArgs, LoaderFunctionArgs, json, redirect, } from "@remix-run/node";
+import {
+  Link,
+  useActionData,
+  useLoaderData,
+  useSubmit
+} from "@remix-run/react";
 import { UserAuthForm } from "~/components/auth/user-auth-form";
 import { buttonVariants } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 import sideImage from "~/images/food-pantry.png"
-// import { Link, useActionData, useLoaderData, useSubmit } from "@remix-run/react";
-// import { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
+import { commitSession, getSession } from "~/services/session.server";
+import { checkSessionCookie, signIn, signInWithToken } from "~/services/auth-firebase.server";
+import { getRestConfig } from "~/services/firebase/firebase.server";
+import * as firebaseRest from "~/services/firebase/firebase-rest";
+import { authenticator } from "~/services/auth.server";
+import { AuthStrategies } from "~/services/auth_strategies";
+
 // import { checkSessionCookie, signIn, signInWithToken } from "~/server/auth/auth.server";
-// import * as firebaseRest from "~/server/auth/firebase-rest";
 // import { getRestConfig } from "~/server/auth/firebase.server";
 // import { commitSession, getSession } from "~/server/auth/sessions";
 
@@ -42,20 +52,63 @@ export async function action({ params, request }: ActionFunctionArgs) {
   //   return json({ error: String(error) }, { status: 401 });
   // }
 
-  return json({ error: "Please fill all fields!" }, { status: 400 });
+  return await authenticator.authenticate(AuthStrategies.FORM, request, {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  });
 
 }
 
 
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
-  return json({})
+  await authenticator.isAuthenticated(request, {
+    successRedirect: "/",
+  }
+  )
+  // const session = await getSession(request.headers.get("cookie"));
+  // const { uid } = await checkSessionCookie(session);
+  // const headers = {
+  //   "Set-Cookie": await commitSession(session),
+  // };
+  // if (uid) {
+  //   return redirect("/", { headers });
+  // }
+  const { apiKey, domain } = getRestConfig();
+  return json({ apiKey, domain })
 
 }
 
+type ActionData = {
+  error?: string;
+};
+
 
 export default function LoginPage() {
+  const [clientAction, setClientAction] = useState<ActionData>()
+  const restConfig = useLoaderData<typeof loader>();
+  const submit = useSubmit();
 
+  const handleSubmit = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      // To avoid rate limiting, we sign in client side if we can.
+      const login = await firebaseRest.signInWithPassword(
+        {
+          email: event.currentTarget.email.value,
+          password: event.currentTarget.password.value,
+          returnSecureToken: true,
+        },
+        restConfig
+      );
+      if (firebaseRest.isError(login)) {
+        setClientAction({ error: login.error.message });
+        return;
+      }
+      submit({ idToken: login.idToken }, { method: "post" });
+    },
+    [submit, restConfig]
+  );
 
 
   return (
@@ -110,7 +163,7 @@ export default function LoginPage() {
               Enter your email below to create your account
             </p>
           </div>
-          <UserAuthForm />
+          <UserAuthForm handleSubmit={handleSubmit} />
           <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link

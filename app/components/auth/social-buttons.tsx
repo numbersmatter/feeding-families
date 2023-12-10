@@ -1,6 +1,7 @@
 import { Form } from "@remix-run/react"
 import { AuthStrategies } from "~/services/auth_strategies";
 import type { AuthStrategy } from "~/services/auth.server";
+import { Button } from "~/components/ui/button";
 
 interface SocialButtonProps {
   provider: AuthStrategy,
@@ -9,6 +10,8 @@ interface SocialButtonProps {
 
 export const SocialButton = ({ provider, label }: SocialButtonProps) => (
   <Form action={`/auth/${provider}`} method="post">
-    <button>{label}</button>
+    <Button variant={"outline"} type="button">
+      {label}
+    </Button>
   </Form>
 );

@@ -73,6 +73,21 @@ const signInWithPassword = async (email: string, password: string) => {
   return signInResponse;
 };
 
+const signInWithGoogleAccessToken = async (accessToken: string) => {
+  // const signInResponse = await firebaseRest(
+  //   {
+  //     postBody: `access_token=${accessToken}`,
+  //     requestUri: "http://localhost",
+  //     returnSecureToken: true,
+  //   },
+  //   restConfig
+  // );
+  // if (firebaseRest.isError(signInResponse)) {
+  //   throw new Error(signInResponse.error.message);
+  // }
+  // return signInResponse;
+};
+
 export const auth = {
   server: getServerAuth(),
   signInWithPassword,

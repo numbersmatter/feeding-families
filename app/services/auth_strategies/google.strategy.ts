@@ -10,12 +10,18 @@ if (!clientID || !clientSecret) {
   throw new Error("Missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET");
 }
 
-export const googleStrategy = new GoogleStrategy<User>({
-  clientID,
-  clientSecret,
-  callbackURL: `${process.env.APP_URL}/auth/${AuthStrategies.GOOGLE}/callback`,
-},
-async ({ accessToken, refreshToken, extraParams, profile }) => {
-  // Do something with the tokens and profile
-  return {};
-});
+export const googleStrategy = new GoogleStrategy<User>(
+  {
+    clientID,
+    clientSecret,
+    callbackURL: `${process.env.APP_URL}/auth/${AuthStrategies.GOOGLE}/callback`,
+  },
+  async ({ accessToken, refreshToken, extraParams, profile }) => {
+    // Do something with the tokens and profile
+
+    // not correct
+    return {
+      uid: profile.id,
+    };
+  }
+);
