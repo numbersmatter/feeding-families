@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 
 const appName = "Feeding Families"
 
-export function StandardShell({
+export function StaffShell({
   children
 }: {
   children: React.ReactNode

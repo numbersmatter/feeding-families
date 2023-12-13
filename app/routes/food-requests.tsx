@@ -1,10 +1,10 @@
 import { Outlet } from "@remix-run/react";
-import { StandardShell } from "~/components/layout/shells";
+import { StaffShell } from "~/components/layout/shells";
 
 export default function RouteComponent() {
   return (
-    <StandardShell>
+    <StaffShell>
       <Outlet />
-    </StandardShell>
+    </StaffShell>
   );
 }

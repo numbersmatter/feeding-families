@@ -1,7 +1,7 @@
 import type { LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData, Form } from '@remix-run/react';
 import { OverviewCard } from '~/components/dashboard/overview-card';
-import { StandardShell } from '~/components/layout/shells';
+import { StaffShell } from '~/components/layout/shells';
 import { authenticator } from '~/services/auth.server';
 import {
   Tabs,
@@ -29,7 +29,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function DashboardRoute() {
   const { message } = useLoaderData<typeof loader>();
   return (
-    <StandardShell>
+    <StaffShell>
       <div className="flex-1 space-y-4 p-8 pt-6 overflow-y-auto bg-secondary">
         <h1 className="text-2xl font-semibold">Dashboard</h1>
         <Tabs defaultValue="overview" className="space-y-4">
@@ -64,6 +64,6 @@ export default function DashboardRoute() {
           <button type='submit'>Logout</button>
         </Form>
       </div>
-    </StandardShell>
+    </StaffShell>
   );
 }

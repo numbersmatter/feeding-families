@@ -2,7 +2,7 @@ import type { MetaFunction, ActionFunctionArgs, LoaderFunctionArgs } from "@remi
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { TitleHeader } from "~/components/layout/page-headers";
-import { StandardShell } from "~/components/layout/shells";
+import { StaffShell } from "~/components/layout/shells";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { RequestVerificationForm } from "~/components/verification/request-verification-form";
 import { authenticator } from "~/services/auth.server";
@@ -32,7 +32,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function Index() {
   const data = useLoaderData<typeof loader>();
   return (
-    <StandardShell>
+    <StaffShell>
       <div className="flex-1 overflow-y-auto bg-secondary">
         <TitleHeader title="Welcome to the Feeding Families App" >
           <Card>
@@ -53,7 +53,7 @@ export default function Index() {
 
         </main>
       </div>
-    </StandardShell>
+    </StaffShell>
 
   );
 }
