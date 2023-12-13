@@ -15,7 +15,15 @@ import {
 } from "@radix-ui/react-icons";
 
 
-export const navigation = [
+interface SideBarMenuItems {
+  id: string;
+  name: string;
+  to: string;
+  icon: React.ReactNode;
+  end: boolean;
+}
+
+export const staffNavigation: SideBarMenuItems[] = [
   {
     id: "home",
     name: "Home",
@@ -39,26 +47,51 @@ export const navigation = [
   },
   {
     id: "verify",
+    name: "Verification Requests",
+    to: `/verify`,
+    icon: <ClipboardIcon className=" h-6 w-6  " aria-hidden="true" />,
+    end: false,
+  },
+];
+export const familyNavigation: SideBarMenuItems[] = [
+
+
+  {
+    id: "verify",
     name: "Verification",
     to: `/verify`,
     icon: <ClipboardIcon className=" h-6 w-6  " aria-hidden="true" />,
     end: false,
   },
 ];
+export const familyNavigationVerfied: SideBarMenuItems[] = [
+  {
+    id: "home",
+    name: "Home",
+    to: `/`,
+    icon: <HomeIcon className=" h-6 w-6  " aria-hidden="true" />,
+    end: true,
+  },
 
-const navIcon2 = {
-  home: <HomeIcon className=" h-6 w-6 " aria-hidden="true" />,
-  history: <BackpackIcon className=" h-6 w-6  " aria-hidden="true" />,
+  {
+    id: "food-request",
+    name: "Food Box Request",
+    to: `/food-request`,
+    icon: <ClipboardIcon className=" h-6 w-6  " aria-hidden="true" />,
+    end: false,
+  },
+];
+
+
+export function DesktopSideBar({
+  name,
+  icon,
+  sidebarMenuItems
+}: {
+  name: string;
+  icon: React.ReactNode;
+  sidebarMenuItems: SideBarMenuItems[];
 }
-
-
-const appName = "Feeding Families"
-
-
-
-
-
-export function DesktopSideBar(
 ) {
   return (
     <>
@@ -67,18 +100,16 @@ export function DesktopSideBar(
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 px-6">
           <div className="flex h-16 shrink-0 items-center gap-3 border-b-2">
-            <CookieIcon
-              className="h-8 w-auto  text-primary-foreground"
-            />
+            {icon}
             <span className="text-primary-foreground text-2xl font-black">
-              {appName}
+              {name}
             </span>
           </div>
           <nav className="flex flex-1 flex-col">
             <ul className="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul className="-mx-2 space-y-1">
-                  {navigation.map((item) => (
+                  {sidebarMenuItems.map((item) => (
                     <li key={item.name}>
                       <NavLink
                         to={item.to}
@@ -132,23 +163,29 @@ export function DesktopSideBar(
 
 
 
-export function MobileSideBar() {
+export function MobileSideBar({
+  name,
+  icon,
+  sidebarMenuItems
+}: {
+  name: string;
+  icon: React.ReactNode;
+  sidebarMenuItems: SideBarMenuItems[];
+}) {
   return (
     <>
       <div className="flex grow flex-col bg-background  gap-y-5 overflow-y-auto px-6 pb-2">
         <div className="flex h-16 shrink-0 items-center">
-          <CookieIcon
-            className="h-8 w-auto"
-          />
+          {icon}
           <span className="text-foreground text-2xl font-black">
-            {appName}
+            {name}
           </span>
         </div>
         <nav className="flex flex-1 flex-col">
           <ul className="flex flex-1 flex-col gap-y-7">
             <li>
               <ul className="-mx-2 space-y-1">
-                {navigation.map((item) => (
+                {sidebarMenuItems.map((item) => (
                   <li key={item.name}>
                     <NavLink
                       to={item.to}
@@ -174,4 +211,52 @@ export function MobileSideBar() {
       </div>
     </>
   );
+}
+
+export function StaffDesktop() {
+
+  return <DesktopSideBar
+    name="Feeding Families Staff"
+    icon={<CookieIcon className="h-8 w-auto  text-primary-foreground" />}
+    sidebarMenuItems={staffNavigation}
+  />
+}
+
+
+export function StaffMobile() {
+  return <MobileSideBar
+    name="Feeding Families Staff"
+    icon={<CookieIcon className="h-8 w-auto  text-primary-foreground" />}
+    sidebarMenuItems={staffNavigation}
+  />
+}
+
+export function FamilyDesktop() {
+  return <DesktopSideBar
+    name="Feeding Families"
+    icon={<CookieIcon className="h-8 w-auto  text-primary-foreground" />}
+    sidebarMenuItems={familyNavigation}
+  />
+}
+export function FamilyDesktopVerified() {
+  return <DesktopSideBar
+    name="Feeding Families"
+    icon={<CookieIcon className="h-8 w-auto  text-primary-foreground" />}
+    sidebarMenuItems={familyNavigationVerfied}
+  />
+}
+
+export function FamilyMobile() {
+  return <MobileSideBar
+    name="Feeding Families"
+    sidebarMenuItems={familyNavigation}
+    icon={<CookieIcon className="h-8 w-auto  text-primary-foreground" />}
+  />
+}
+export function FamilyMobileVerified() {
+  return <MobileSideBar
+    name="Feeding Families"
+    sidebarMenuItems={familyNavigationVerfied}
+    icon={<CookieIcon className="h-8 w-auto  text-primary-foreground" />}
+  />
 }

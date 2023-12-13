@@ -1,6 +1,8 @@
 import type { LoaderFunctionArgs, ActionFunctionArgs } from "@remix-run/node";
 import { useLoaderData, isRouteErrorResponse, useRouteError } from "@remix-run/react";
 import { StandardDataTable } from "~/components/common/standard-data-table";
+import { FoodEligibleAlert } from "~/components/food-requests/food-alert-box";
+import { FoodRequestForm } from "~/components/food-requests/food-request-form";
 import { foodRequestColumnsLong, foodRequestTestData } from "~/components/food-requests/food-requests-columns";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
@@ -19,6 +21,16 @@ export default function FoodRequestIndexRoute() {
 
   return (
     <main className="flex h-full flex-1 flex-col space-y-8 overflow-y-auto">
+      <div className="h-8" />
+      <div className="flex flex-col items-center justify-between space-y-8 p-8">
+        <div className="px-10 w-full">
+
+          <FoodEligibleAlert />
+        </div>
+        <div className="flex items-center space-x-2">
+          <FoodRequestForm />
+        </div>
+      </div>
       <div className="flex items-center justify-between space-y-2 p-8">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">

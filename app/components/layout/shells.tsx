@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   Cross2Icon as XMarkIcon,
@@ -6,15 +6,19 @@ import {
   LockOpen1Icon,
 } from "@radix-ui/react-icons";
 import { Form, Link, } from "@remix-run/react";
-import { DesktopSideBar, MobileSideBar } from "~/components/layout/sidebars";
+import { FamilyDesktop, FamilyDesktopVerified, FamilyMobile, FamilyMobileVerified, StaffDesktop, StaffMobile } from "~/components/layout/sidebars";
 import { Button } from "../ui/button";
 
 const appName = "Feeding Families"
 
-export function StaffShell({
-  children
+export function AppShell({
+  children,
+  desktopSidebar,
+  mobileSidebar,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
+  desktopSidebar: React.ReactNode;
+  mobileSidebar: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
@@ -72,13 +76,13 @@ export function StaffShell({
                   </div>
                 </Transition.Child>
                 {/* Sidebar component, swap this element with another sidebar if you like */}
-                <MobileSideBar />
+                {mobileSidebar}
               </Dialog.Panel>
             </Transition.Child>
           </div>
         </Dialog>
       </Transition.Root>
-      <DesktopSideBar />
+      {desktopSidebar}
       <div className="h-full flex flex-col lg:pl-64">
         <div className="sticky top-0 z-40 flex items-center gap-x-6  px-4 py-4 shadow-sm sm:px-6 lg:hidden">
           <button
@@ -112,5 +116,49 @@ export function StaffShell({
         <div className="h-12 border-t-4 border-muted-foreground bg-muted"></div>
       </div>
     </div>
+  )
+}
+
+export function StaffShell({
+  children
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <AppShell
+      desktopSidebar={<StaffDesktop />}
+      mobileSidebar={<StaffMobile />}
+    >
+      {children}
+    </AppShell>
+  )
+}
+
+export function FamilyShellVerfied({
+  children
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <AppShell
+      desktopSidebar={<FamilyDesktopVerified />}
+      mobileSidebar={<FamilyMobileVerified />}
+    >
+      {children}
+    </AppShell>
+  )
+}
+export function FamilyShell({
+  children
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <AppShell
+      desktopSidebar={<FamilyDesktop />}
+      mobileSidebar={<FamilyMobile />}
+    >
+      {children}
+    </AppShell>
   )
 }

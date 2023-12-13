@@ -5,7 +5,7 @@
 // Import dependencies
 import type { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { TitleHeader } from "~/components/layout/page-headers";
-import { StaffShell } from "~/components/layout/shells";
+import { FamilyShell, } from "~/components/layout/shells";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { RequestVerificationForm } from "~/components/verification/request-verification-form";
 
@@ -31,7 +31,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function VerifyUserPage() {
   return (
-    <StaffShell>
+    <FamilyShell>
       <div className="flex-1 overflow-y-auto bg-secondary">
         <TitleHeader title="Verify User" >
           <Card>
@@ -61,7 +61,7 @@ export default function VerifyUserPage() {
 
         </main>
       </div>
-    </StaffShell>
+    </FamilyShell>
   )
 }
 
