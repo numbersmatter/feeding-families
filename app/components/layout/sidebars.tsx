@@ -32,6 +32,13 @@ export const staffNavigation: SideBarMenuItems[] = [
     end: true,
   },
   {
+    id: "verify-requests",
+    name: "Approve Verification Requests",
+    to: `/verify-approve`,
+    icon: <ClipboardIcon className=" h-6 w-6  " aria-hidden="true" />,
+    end: false,
+  },
+  {
     id: "dashboard",
     name: "Dashboard",
     to: `/dashboard`,
@@ -52,6 +59,7 @@ export const staffNavigation: SideBarMenuItems[] = [
     icon: <ClipboardIcon className=" h-6 w-6  " aria-hidden="true" />,
     end: false,
   },
+
 ];
 export const familyNavigation: SideBarMenuItems[] = [
 
